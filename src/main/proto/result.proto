@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.interns.grpc.demo.stubs.hello;
+
+option java_multiple_files = true;
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloToEveryoneRequest{}
+
+message HelloResponse {
+  string helloName = 1;
+}
+
+service HelloService {
+  rpc sayHello(HelloRequest) returns (HelloResponse);
+  rpc sayHelloToOneByOne(stream HelloRequest) returns (stream HelloResponse);
+  rpc sayHelloToEveryone(stream HelloRequest) returns (HelloResponse);
+  rpc sayHelloToPeopleYouKnow(HelloToEveryoneRequest) returns (stream HelloResponse);
+}
